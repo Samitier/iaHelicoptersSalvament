@@ -15,7 +15,6 @@ public class Experimento {
         Estado estado = new Estado();
         estado.generarProblema();
         estado.generarSolucion();
-        Centro a;
     }
 }
 

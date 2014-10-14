@@ -4,6 +4,7 @@
  */
 package salvament;
 
+import IA.Desastres.Grupo;
 import java.util.Stack;
 
 /**
@@ -11,35 +12,37 @@ import java.util.Stack;
  * @author Samitier
  */
 public class Viaje {
-    Stack<Grup> grups;
-    int tempsTotal;
-    int npersones;
+    final int MAX_PERSONAS_VIAJE = 15;
+    final int MAX_GRUPOS = 3;
+
+    int posx, posy;
+    Stack<Grupo> grupos;
+    int tiempoTotal;
+    int npersonas;
     
-    final int MAX_PERSONES_VIATGE = 15;
-    final int MAX_GRUPS = 3;
 
-
-    public Viaje() {
-        grups = new Stack();
+    public Viaje(int posx, int posy) {
+        this.posx = posx; this.posy = posy;
+        grupos = new Stack();
     }
     
-    public void treureGrup() {
-        Grup grup = grups.pop();
-        npersones-= grup.npersones;
-        tempsTotal = calcularTempsMinim();
+    public void quitarGrupo() {
+        Grupo grupo = grupos.pop();
+        npersonas-= grupo.getNPersonas();
+        tiempoTotal = calcularTiempoMinimo();
     }
     
-    public boolean afegirGrup(Grup grup) {
-        if(grups.size()==MAX_GRUPS) return false;
-        if ((npersones+grup.npersones)>MAX_PERSONES_VIATGE) return false;
-        npersones += grup.npersones;
-        grups.add(grup);
-        tempsTotal = calcularTempsMinim();
+    public boolean introducirGrupo(Grupo grupo) {
+        if(grupos.size()==MAX_GRUPOS) return false;
+        if ((npersonas+grupo.getNPersonas())>MAX_PERSONAS_VIAJE) return false;
+        npersonas += grupo.getNPersonas();
+        grupos.add(grupo);
+        tiempoTotal = calcularTiempoMinimo();
         return true;
     }
     
     //funcio que calcula el temps minim que pot tardar l'helicopter en salvar tots els grups asignats
-    private int calcularTempsMinim() {
+    private int calcularTiempoMinimo() {
         //TODO
         return 0;
     }
