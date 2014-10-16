@@ -46,13 +46,14 @@ public class Solucion {
         return true;
     }
 
-    double obtenerHeuristico() {
-        int max, aux;
+    double tiempoTotalSalvamento() {
+        double max, aux;
         max = aux =0;
         for(int i=0; i< helicopteros.size();++i){
-            helicopteros.get(i).
+            aux = helicopteros.get(i).getTiempoTotal();
+            if(aux>max) max = aux;
         }
-        return solucio;
+        return max;
     }
     
 }

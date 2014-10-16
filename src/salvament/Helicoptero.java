@@ -16,7 +16,6 @@ public class Helicoptero {
     
     int posx, posy;
     ArrayList<Viaje> viajes;
-    int tiempo;
 
     public Helicoptero(int posx, int posy) {
         this.posx = posx;
@@ -28,7 +27,6 @@ public class Helicoptero {
         if(viajes.isEmpty()) {
             Viaje vi = new Viaje(posx,posy);
             vi.introducirGrupo(grupo);
-            tiempo += vi.tiempoTotal;
         }
         else {
             boolean found = false;
@@ -42,6 +40,14 @@ public class Helicoptero {
                 vi.introducirGrupo(grupo);
             }
         }
+    }
+    
+    public double getTiempoTotal() {
+        int total =0;
+        for(Viaje viaje:viajes) {
+           total += viaje.tiempoTotal; 
+        }
+        return total;
     }
     
     public void borrarGrupo() {
