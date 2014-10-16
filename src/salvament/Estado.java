@@ -11,8 +11,7 @@ import java.util.List;
  *
  * @author Samitier
  */
-public class Estado implements aima.search.framework.SuccessorFunction, 
-        aima.search.framework.GoalTest, aima.search.framework.HeuristicFunction{
+public class Estado {
 
     ////Variables del problema///////
     final int NUM_CENTROS = 5;
@@ -37,24 +36,5 @@ public class Estado implements aima.search.framework.SuccessorFunction,
     void generarSolucion() {
         solucion = new Solucion(centros);
         solucion.generarSolucion(grupos);
-    }
-
-    @Override
-    public List getSuccessors(Object o) {
-        Solucion solucion = (Solucion) o;
-        return solucion.generarSuccesores();
-    }
-
-    @Override
-    public boolean isGoalState(Object o) {
-        Solucion solucion = (Solucion) o;
-        return solucion.esSolucionFinal();
-    }
-
-    @Override
-    public double getHeuristicValue(Object o) {
-        Solucion solucion = (Solucion) o;
-        return solucion.obtenerHeuristico();
-    }
-    
+    }  
 }

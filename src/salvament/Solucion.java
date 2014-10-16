@@ -18,8 +18,11 @@ import java.util.Random;
 public class Solucion {
 
     ArrayList<Helicoptero> helicopteros;
+    Centros centros1; //chapuza
+    Grupos grupos1;//chapuza
     
     public Solucion(Centros centros) {
+        centros1 = centros;
         helicopteros = new ArrayList();
         for(int i=0; i<centros.size(); i++) {
             Centro c = centros.get(i);
@@ -31,6 +34,7 @@ public class Solucion {
     }
     
     void generarSolucion(Grupos grupos) {
+        grupos1 = grupos;
         Random rand = new Random();
         for(int i=0; i<grupos.size();++i) {
             int heli = rand.nextInt(helicopteros.size());
@@ -39,12 +43,15 @@ public class Solucion {
     }
 
     List generarSuccesores() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        List solutions = new ArrayList();
+        for(int i=0; i<100; ++i) {
+            Solucion sol = new Solucion(centros1);
+            sol.generarSolucion(grupos1);
+            solutions.add(sol);
+        }
+        return solutions;
     }
 
-    boolean esSolucionFinal() {
-        return true;
-    }
 
     double tiempoTotalSalvamento() {
         double max, aux;
