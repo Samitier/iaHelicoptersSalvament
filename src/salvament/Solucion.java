@@ -53,6 +53,9 @@ public class Solucion {
             helicopteros.get(i).
         }
         return solucio;
-    }0
+    }
+    void(){
+    int guarro = 0;
+    }
     
 }
