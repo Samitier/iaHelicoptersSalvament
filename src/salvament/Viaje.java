@@ -49,9 +49,9 @@ public class Viaje {
         //raiz((x2-x1)^2 + (y2-y1)^2)
         double xaux,yaux;
         Grupo gr;
-        gr = grupos.get(0); 
-        xaux= gr.getCoordX();
-        yaux=gr.getCoordY();
+        
+        xaux= posx;
+        yaux=posy;
         double taux = 0;
         double dist = 0;
         for(int i = 0; i<grupos.size();i++){
