@@ -54,5 +54,10 @@ public class Solucion {
         }
         return solucio;
     }
+
+    void(){
+    int guarro = 0;
+    }
+
     
 }
