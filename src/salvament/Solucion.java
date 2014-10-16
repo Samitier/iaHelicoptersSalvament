@@ -53,6 +53,6 @@ public class Solucion {
             helicopteros.get(i).
         }
         return solucio;
-    }0
+    }
     
 }
