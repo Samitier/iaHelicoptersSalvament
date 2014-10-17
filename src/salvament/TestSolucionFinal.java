@@ -10,6 +10,9 @@ package salvament;
  */
 public class TestSolucionFinal implements aima.search.framework.GoalTest{
     @Override
+    /**
+     * @var o estat actual
+     */
     public boolean isGoalState(Object o) {
         return false;
     }
