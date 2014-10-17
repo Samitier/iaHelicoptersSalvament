@@ -14,6 +14,7 @@ public class FuncionHeuristica implements aima.search.framework.HeuristicFunctio
     @Override
     public double getHeuristicValue(Object o) {
         Solucion solucion = (Solucion) o;
+        System.out.println(solucion.tiempoTotalSalvamento());
         return solucion.tiempoTotalSalvamento();
     }
 }

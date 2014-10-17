@@ -27,6 +27,7 @@ public class Helicoptero {
         if(viajes.isEmpty()) {
             Viaje vi = new Viaje(posx,posy);
             vi.introducirGrupo(grupo);
+            viajes.add(vi);
         }
         else {
             boolean found = false;
@@ -38,6 +39,7 @@ public class Helicoptero {
             if(!found) {
                 Viaje vi = new Viaje(posx,posy);
                 vi.introducirGrupo(grupo);
+                viajes.add(vi);
             }
         }
     }

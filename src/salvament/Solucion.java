@@ -7,6 +7,7 @@ package salvament;
 import IA.Desastres.Centro;
 import IA.Desastres.Centros;
 import IA.Desastres.Grupos;
+import aima.search.framework.Successor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -43,11 +44,11 @@ public class Solucion {
     }
 
     List generarSuccesores() {
-        List solutions = new ArrayList();
+        ArrayList solutions = new ArrayList();
         for(int i=0; i<100; ++i) {
             Solucion sol = new Solucion(centros1);
             sol.generarSolucion(grupos1);
-            solutions.add(sol);
+            solutions.add(new Successor("Shit", sol));
         }
         return solutions;
     }
