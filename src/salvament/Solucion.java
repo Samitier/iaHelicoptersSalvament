@@ -11,19 +11,31 @@ import aima.search.framework.Successor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Samitier
  */
-public class Solucion {
+public class Solucion implements Cloneable{
 
     ArrayList<Helicoptero> helicopteros;
-    Centros centros1; //chapuza
-    Grupos grupos1;//chapuza
+
+    public Solucion() {
+    }
+    
+    @Override
+    protected Object clone()  {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(Solucion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
     public Solucion(Centros centros) {
-        centros1 = centros;
         helicopteros = new ArrayList();
         for(int i=0; i<centros.size(); i++) {
             Centro c = centros.get(i);
@@ -35,7 +47,6 @@ public class Solucion {
     }
     
     void generarSolucion(Grupos grupos) {
-        grupos1 = grupos;
         Random rand = new Random();
         for(int i=0; i<grupos.size();++i) {
             int heli = rand.nextInt(helicopteros.size());
@@ -43,22 +54,11 @@ public class Solucion {
         }
     }
 
-    List generarSuccesores() {
-        ArrayList solutions = new ArrayList();
-        for(int i=0; i<100; ++i) {
-            Solucion sol = new Solucion(centros1);
-            sol.generarSolucion(grupos1);
-            solutions.add(new Successor("Shit", sol));
-        }
-        return solutions;
-    }
-
-
-    double tiempoTotalSalvamento() {
+    double getTiempoTotalSalvamento() {
         double max, aux;
         max = aux =0;
-        for(int i=0; i< helicopteros.size();++i){
-            aux = helicopteros.get(i).getTiempoTotal();
+        for(Helicoptero heli: helicopteros){
+            aux = heli.getTiempoTotal();
             if(aux>max) max = aux;
         }
         return max;

@@ -24,7 +24,7 @@ public class Experimento {
         Search search = new HillClimbingSearch();
         SearchAgent agent = new SearchAgent(problem,search);
         Solucion soluFinal = (Solucion) search.getGoalState();
-        System.out.println(soluFinal.tiempoTotalSalvamento());
+        System.out.println(soluFinal.getTiempoTotalSalvamento());
         System.out.println(System.currentTimeMillis()-time);
     
     }

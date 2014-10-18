@@ -43,6 +43,18 @@ public class Helicoptero {
             }
         }
     }
+   
+    //introduce el grupo en el viaje, retorna false si el viaje esta lleno
+    public boolean introducirGrupo(Grupo gr, int nviaje){
+        return viajes.get(nviaje).introducirGrupo(gr);
+    }
+    
+    //introduce el grupo en nuevo viaje
+    public void introducirGrupoNuevo (Grupo gr){
+        Viaje vj = new Viaje(posx,posy);
+        vj.introducirGrupo(gr);
+        viajes.add(vj);
+    }
     
     public double getTiempoTotal() {
         int total =0;
@@ -52,11 +64,10 @@ public class Helicoptero {
         return total;
     }
     
-    public void borrarGrupo() {
-        
+    public Grupo borrarGrupo(int nviaje, int ngrupo) {
+       Grupo gr = viajes.get(nviaje).grupos.get(ngrupo);
+       if(viajes.get(nviaje).quitarGrupo(ngrupo)) viajes.remove(nviaje);
+       return gr;
     }
-    
-    public void cambiaOrdenViajes() {
-        
-    }
+       
 }

@@ -11,10 +11,10 @@ import java.util.List;
  * @author Samitier
  */
 public class FuncionHeuristica implements aima.search.framework.HeuristicFunction{
+    //Esta heurística solo valorará el tiempo en salvar a todos los grupos, no los grupos de prioridad 1
     @Override
     public double getHeuristicValue(Object o) {
         Solucion solucion = (Solucion) o;
-        System.out.println(solucion.tiempoTotalSalvamento());
-        return solucion.tiempoTotalSalvamento();
+        return solucion.getTiempoTotalSalvamento();
     }
 }
