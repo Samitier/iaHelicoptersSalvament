@@ -73,4 +73,27 @@ public class Viaje {
         //TODO
         return t;
     }
+
+    boolean consultar_prio1() {
+        Grupo gr;
+        for (int i=0;i<grupos.size();++i){
+            gr = grupos.get(i);
+            if(gr.getPrioridad()==1)return true;
+        }
+        return false;       
+    }
+    double getsumpri1(){
+        Grupo gr;
+        double Sum = 0;
+        int npers = 0;
+        for (int i=0;i<grupos.size();++i){
+            gr = grupos.get(i);
+            if(gr.getPrioridad()==1){
+                npers = gr.getNPersonas();
+                Sum += npers * 2;
+            }
+        }
+        return Sum;
+        
+    }
 }

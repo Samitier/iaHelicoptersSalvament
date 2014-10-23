@@ -41,6 +41,17 @@ public class Helicoptero {
             }
         }
     }
+    double Consultar_tiempo_prior1(){
+        double sum = 0;
+        Viaje via;
+        for(int i = 0; i< viajes.size();++i){
+            via = viajes.get(i);
+            if(via.consultar_prio1()){
+                sum += via.getsumpri1();
+            }
+        }
+        return sum;    
+    }
     
     public double getTiempoTotal() {
         int total =0;
