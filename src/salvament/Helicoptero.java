@@ -43,7 +43,7 @@ public class Helicoptero {
             }
         }
     }
-<<<<<<< HEAD
+
     double Consultar_tiempo_prior1(){
         double sum = 0;
         Viaje via;
@@ -54,7 +54,7 @@ public class Helicoptero {
             }
         }
         return sum;    
-=======
+    }
    
     //introduce el grupo en el viaje, retorna false si el viaje esta lleno
     public boolean introducirGrupo(Grupo gr, int nviaje){
@@ -66,7 +66,7 @@ public class Helicoptero {
         Viaje vj = new Viaje(posx,posy);
         vj.introducirGrupo(gr);
         viajes.add(vj);
->>>>>>> 70a92058d8eb96fab2f45c868da0acb682c3f36b
+
     }
     
     public double getTiempoTotal() {
