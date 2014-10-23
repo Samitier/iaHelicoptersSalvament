@@ -76,6 +76,9 @@ public class Helicoptero {
         }
         return total;
     }
+    public void intercambiar_grupo(){
+        
+    }
     
     public Grupo borrarGrupo(int nviaje, int ngrupo) {
        Grupo gr = viajes.get(nviaje).grupos.get(ngrupo);
