@@ -28,10 +28,13 @@ public class Viaje {
         grupos = new ArrayList();
     }
     
-    public void quitarGrupo(int i) {
+    public boolean quitarGrupo(int i) {
         Grupo grupo = grupos.get(i);
+        if(grupos.size()==0) return true;
         npersonas-= grupo.getNPersonas();
         tiempoTotal = calcularTiempoMinimo();
+        grupos.remove(i);
+        return false;
     }
     
     public boolean introducirGrupo(Grupo grupo) {
