@@ -12,7 +12,7 @@ import java.util.Stack;
  *
  * @author Samitier
  */
-public class Helicoptero {
+public class Helicoptero implements Cloneable  {
     
     int posx, posy;
     ArrayList<Viaje> viajes;
@@ -21,6 +21,16 @@ public class Helicoptero {
         this.posx = posx;
         this.posy = posy;
         viajes = new ArrayList();
+    }
+    
+    public Helicoptero(Helicoptero hel) {
+        this.posx = hel.posx;
+        this.posy = hel.posy;
+        viajes = new ArrayList();
+        for(Viaje vi:hel.viajes) {
+            Viaje via = new Viaje(vi);
+            viajes.add(via);
+        }
     }
     
     public void introducirGrupo(Grupo grupo) {

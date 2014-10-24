@@ -6,6 +6,7 @@ package salvament;
 
 import IA.Desastres.Centro;
 import IA.Desastres.Centros;
+import IA.Desastres.Grupo;
 import IA.Desastres.Grupos;
 import aima.search.framework.Successor;
 import java.util.ArrayList;
@@ -22,17 +23,12 @@ public class Solucion implements Cloneable{
 
     ArrayList<Helicoptero> helicopteros;
 
-    public Solucion() {
-    }
-    
-    @Override
-    protected Object clone()  {
-        try {
-            return super.clone();
-        } catch (CloneNotSupportedException ex) {
-            Logger.getLogger(Solucion.class.getName()).log(Level.SEVERE, null, ex);
+    public Solucion(Solucion sol) {
+        helicopteros = new ArrayList();
+        for(Helicoptero heli:sol.helicopteros ){
+            Helicoptero helico = new Helicoptero(heli);
+            helicopteros.add(helico);
         }
-        return null;
     }
     
     public Solucion(Centros centros) {
@@ -55,13 +51,24 @@ public class Solucion implements Cloneable{
     }
 
     double getTiempoTotalSalvamento() {
-        double max, aux;
-        max = aux =0;
+        double max;
+        max = 0;
         for(Helicoptero heli: helicopteros){
-            aux = heli.getTiempoTotal();
-            if(aux>max) max = aux;
+           max += heli.getTiempoTotal();
         }
         return max;
+    }
+
+    boolean intercambiarGrupos(int heli, int viajes, Grupo grupo, int heli2, int viajes2, int grupos2) {
+        Grupo grupo2 = helicopteros.get(heli2).viajes.get(viajes2).grupos.get(grupos2);
+        if(((helicopteros.get(heli).viajes.get(viajes).npersonas + grupo2.getNPersonas()) <= 15) &&
+            ((helicopteros.get(heli2).viajes.get(viajes2).npersonas + grupo.getNPersonas()) <= 15)) {
+            helicopteros.get(heli2).borrarGrupo(viajes2, grupos2);
+            helicopteros.get(heli2).introducirGrupo(grupo, viajes2);
+            helicopteros.get(heli).introducirGrupo(grupo2, viajes);
+            return true;
+        }
+        return false;
     }
     
 }

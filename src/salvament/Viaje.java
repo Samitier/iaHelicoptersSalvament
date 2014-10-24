@@ -13,7 +13,7 @@ import java.util.*;
  *
  * @author Samitier
  */
-public class Viaje {
+public class Viaje implements Cloneable{
     final int MAX_PERSONAS_VIAJE = 15;
     final int MAX_GRUPOS = 3;
 
@@ -26,6 +26,16 @@ public class Viaje {
     public Viaje(int posx, int posy) {
         this.posx = posx; this.posy = posy;
         grupos = new ArrayList();
+    }
+    
+    public Viaje(Viaje vi) {
+        this.posx = vi.posx;
+        this.tiempoTotal = vi.tiempoTotal;
+        this.npersonas = vi.npersonas;
+        grupos = new ArrayList();
+        for(Grupo gr : vi.grupos){
+            grupos.add(gr);
+        }
     }
     
     public boolean quitarGrupo(int i) {
@@ -45,6 +55,8 @@ public class Viaje {
         tiempoTotal = calcularTiempoMinimo();
         return true;
     }
+    
+
     
     //funcio que calcula el temps minim que pot tardar l'helicopter en salvar tots els grups asignats
     private double calcularTiempoMinimo() {
