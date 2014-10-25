@@ -185,6 +185,14 @@ public class Solucion implements Cloneable{
         return false;
     }
 
+    double getTiempoSalvamentoP1() {
+        double total =0;
+        for(Helicoptero heli:helicopteros) {
+            total += heli.Consultar_tiempo_prior1();
+        }
+        return total;
+    }
+
    
 
     

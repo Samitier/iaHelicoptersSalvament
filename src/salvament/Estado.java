@@ -35,6 +35,6 @@ public class Estado {
 
     void generarSolucion() {
         solucion = new Solucion(centros);
-        solucion.generarSolucion(grupos);
+        solucion.generarSolucion1(grupos,centros);
     }  
 }
