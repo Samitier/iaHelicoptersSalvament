@@ -57,21 +57,32 @@ public class Solucion implements Cloneable{
         int heli = helicopteros.size();
         boolean usado = false;
         int helimin =0;
-        for(int i=0; i<grupos.size();++i) {            
+        for(int i=0; i<grupos.size();++i) { 
+           
             Grupo gr = grupos.get(i);
-            if(!esta_assign(gr,helicopteros)){
+            if(!esta_assign(gr,helicopteros)){                
             listaux = Buscar_grupos_cerc(grupos, gr);
             ct = buscar_ctr_cerc(gr,cs);            
-            for(int j = 0; j < heli && !usado;++j){
+            for(int j = 0; j < heli;++j){
+                 System.out.print(i);
+                    System.out.print(" entra \n");
                 nviaj = helicopteros.get(j).getNviajes();
                 if(nviaj == 0){
-                    helicopteros.get(j).introducirGrupo(grupos.get(i));
+                    for(int k = 0;k<listaux.size();++k){
+                    helicopteros.get(j).introducirGrupo((Grupo) listaux.get(k));
+                    }
                     usado = true;
+                    //System.out.print(i);
+                    //System.out.print(" entra \n");
                 }   
                 else {                    
                     heli = rand.nextInt(helicopteros.size());
-                    helicopteros.get(heli).introducirGrupo(grupos.get(i));
-                    usado = true;
+                    for(int k = 0;k<listaux.size();++k){
+                        helicopteros.get(j).introducirGrupo((Grupo) listaux.get(k));
+                       }         
+                     //System.out.print(i);
+                    //System.out.print(" entra \n");
+                    usado = true;                   
                 }
             }
             usado = false;
