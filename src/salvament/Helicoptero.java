@@ -95,5 +95,9 @@ public class Helicoptero implements Cloneable  {
        if(viajes.get(nviaje).quitarGrupo(ngrupo)) viajes.remove(nviaje);
        return gr;
     }
+
+    public int getNviajes() {
+        return viajes.size();
+    }
        
 }

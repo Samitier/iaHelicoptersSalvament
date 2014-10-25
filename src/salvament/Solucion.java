@@ -49,6 +49,30 @@ public class Solucion implements Cloneable{
             helicopteros.get(heli).introducirGrupo(grupos.get(i));
         }
     }
+    void generarSolucion1(Grupos grupos, Centros cs) {
+        ArrayList listaux = new ArrayList();        
+        Centro ct;
+        int nviaj = 0;
+        int heli = helicopteros.size();
+        boolean usado = false;
+        for(int i=0; i<grupos.size();++i) {
+            
+            Grupo gr = grupos.get(i);
+            listaux = Buscar_grupos_cerc(grupos, gr);
+            ct = buscar_ctr_cerc(gr,cs);
+            for(int j = 0; j < heli && !usado;++j){
+                nviaj = helicopteros.get(j).getNviajes();
+                if(nviaj == 0){
+                    helicopteros.get(j).introducirGrupo(grupos.get(i));
+                    usado = true;
+                }                
+            }
+            helicopteros.get(heli).introducirGrupo(grupos.get(i));        
+            usado = false;
+            }
+              
+    
+    }
 
     double getTiempoTotalSalvamento() {
         double max;
@@ -70,5 +94,82 @@ public class Solucion implements Cloneable{
         }
         return false;
     }
+
+    private ArrayList Buscar_grupos_cerc(Grupos grupos, Grupo gr) {
+        ArrayList<Grupo> listaux = new ArrayList();
+        int n = 0;
+        Grupo gr2;
+        boolean full = false;
+        for(int i =0; i< grupos.size() && n<= 15 && listaux.size()<3 && !full;++i){
+            gr2 = grupos.get(i);            
+                if(gr != gr2){
+                    if(n + gr2.getNPersonas() <= 15){
+                        listaux.add(gr2);
+                        n += gr2.getNPersonas();
+                    }
+                }
+            }
+        Grupo gr3 = null;
+        for(int i =0; i< grupos.size();++i){
+            gr2 = grupos.get(i);
+            if(gr != gr2){
+                for(int j = 0;j < listaux.size();++j ){
+                    if (dist(gr,gr2) < dist(gr, listaux.get(j))){
+                            if(n - listaux.get(j).getNPersonas()+ gr2.getNPersonas() <= 15 && listaux.size()<3){
+                            gr3 = listaux.get(j);
+                            n = gr3.getNPersonas() - n;
+                            n += gr2.getNPersonas();
+                            listaux.set(j, gr2);      
+                        }
+                    }
+                }
+            }        
+        }
+        return listaux;        
+    }
+    
+   
+ 
+    private int dist(Grupo gr, Grupo gr2) {
+        int sum = 0;
+        int posx = gr.getCoordX();
+        int posy = gr.getCoordY();
+        int xaux = gr2.getCoordX();
+        int yaux = gr2.getCoordX();
+        sum = (int)Math.sqrt(Math.pow( (double)posx - xaux ,2 ) + Math.pow((double)posy - yaux ,2));
+        return sum;
+        
+    }
+
+    private Centro buscar_ctr_cerc(Grupo gr, Centros cs) {
+       Centro ct = null;
+       int distaux = 50;
+       int dstr =0;
+       Centro aux;
+       for(int i = 0;i < cs.size(); ++i){
+           aux = cs.get(i);
+           dstr = dist(gr,aux);
+            if(dstr < distaux){
+                distaux = dstr;
+                ct = aux;
+            }
+       }
+       return ct;
+        
+    }
+
+    private int dist(Grupo gr, Centro aux) {
+         int sum = 0;
+        int posx = gr.getCoordX();
+        int posy = gr.getCoordY();
+        int xaux = aux.getCoordX();
+        int yaux = aux.getCoordX();
+        sum = (int) Math.sqrt(Math.pow( (double)posx - xaux ,2 ) + Math.pow((double)posy - yaux ,2));
+        return sum;
+    }
+
+   
+
+    
     
 }
