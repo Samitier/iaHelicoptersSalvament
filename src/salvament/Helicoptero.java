@@ -99,5 +99,12 @@ public class Helicoptero implements Cloneable  {
     public int getNviajes() {
         return viajes.size();
     }
+
+    boolean estagrupo(Grupo gr) {
+        for(int i = 0;i<viajes.size();++i){
+            if(viajes.get(i).existe_grupo(gr))return true;
+        }
+        return false;
+    }
        
 }

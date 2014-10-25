@@ -52,24 +52,31 @@ public class Solucion implements Cloneable{
     void generarSolucion1(Grupos grupos, Centros cs) {
         ArrayList listaux = new ArrayList();        
         Centro ct;
+        Random rand = new Random();
         int nviaj = 0;
         int heli = helicopteros.size();
         boolean usado = false;
-        for(int i=0; i<grupos.size();++i) {
-            
+        int helimin =0;
+        for(int i=0; i<grupos.size();++i) {            
             Grupo gr = grupos.get(i);
+            if(!esta_assign(gr,helicopteros)){
             listaux = Buscar_grupos_cerc(grupos, gr);
-            ct = buscar_ctr_cerc(gr,cs);
+            ct = buscar_ctr_cerc(gr,cs);            
             for(int j = 0; j < heli && !usado;++j){
                 nviaj = helicopteros.get(j).getNviajes();
                 if(nviaj == 0){
                     helicopteros.get(j).introducirGrupo(grupos.get(i));
                     usado = true;
-                }                
+                }   
+                else {                    
+                    heli = rand.nextInt(helicopteros.size());
+                    helicopteros.get(heli).introducirGrupo(grupos.get(i));
+                    usado = true;
+                }
             }
-            helicopteros.get(heli).introducirGrupo(grupos.get(i));        
             usado = false;
             }
+        }
               
     
     }
@@ -166,6 +173,16 @@ public class Solucion implements Cloneable{
         int yaux = aux.getCoordX();
         sum = (int) Math.sqrt(Math.pow( (double)posx - xaux ,2 ) + Math.pow((double)posy - yaux ,2));
         return sum;
+    }
+
+    private boolean esta_assign(Grupo gr, ArrayList<Helicoptero> helicopteros) {
+        boolean trobat = false;
+        for(int i=0;i<helicopteros.size();++i){
+            for(int j =0; j<helicopteros.get(i).getNviajes();++j){
+                if(helicopteros.get(i).estagrupo(gr)) return true;
+            }
+        }
+        return false;
     }
 
    
