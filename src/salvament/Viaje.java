@@ -111,4 +111,11 @@ public class Viaje implements Cloneable{
         return Sum;
         
     }
+
+    boolean existe_grupo(Grupo gr) {
+        for(int i=0;i<grupos.size();++i){
+            if(gr == grupos.get(i))return true;
+        }
+        return false;
+    }
 }
