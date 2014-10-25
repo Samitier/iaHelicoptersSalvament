@@ -25,8 +25,7 @@ public class Experimento {
         SearchAgent agent = new SearchAgent(problem,search);
         Solucion soluFinal = (Solucion) search.getGoalState();
         System.out.println(soluFinal.getTiempoTotalSalvamento());
-        System.out.println(System.currentTimeMillis()-time);
-    
+        System.out.println("Execution time: " + (System.currentTimeMillis()-time) + " miliseconds");    
     }
 }
 
