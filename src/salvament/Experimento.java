@@ -16,7 +16,7 @@ import aima.search.informed.SimulatedAnnealingSearch;
  */
 public class Experimento {
     
-    static boolean isHillClimbing = true;
+    static boolean isHillClimbing = false;
     
     public static void main(String[] args) throws Exception {
         long time = System.currentTimeMillis();
@@ -27,13 +27,13 @@ public class Experimento {
         Problem problem;
         Search search;
         SearchAgent agent;
-        if(isHillClimbing=true) {
+        if(isHillClimbing==true) {
             problem = new Problem(sol,new FuncionSuccesora(), new TestSolucionFinal(), new FuncionHeuristica2());
             search = new HillClimbingSearch();
             agent = new SearchAgent(problem,search);
         }
         else {
-           problem  = new Problem(sol,new FuncionSuccesoraSA(), new TestSolucionFinal(), new FuncionHeuristica2());
+           problem  = new Problem(sol,new FuncionSuccesoraSA(), new TestSolucionFinal(), new FuncionHeuristica());
            search = new SimulatedAnnealingSearch(2000,100,5,0.001);
            agent = new SearchAgent(problem, search);
         }

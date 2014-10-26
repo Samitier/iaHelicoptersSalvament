@@ -26,7 +26,7 @@ public class FuncionSuccesoraSA implements aima.search.framework.SuccessorFuncti
         ArrayList succesores = new ArrayList();
         
         Random random = new Random();
-        for(int i=0; i<30; ++i) {
+        for(int i=0; i<10; ++i) {
             int randHeli = random.nextInt(solucion.helicopteros.size());
             int randViaje = random.nextInt(solucion.helicopteros.get(randHeli).viajes.size());
             int randGrupo = random.nextInt(solucion.helicopteros.get(randHeli).viajes.get(randViaje).grupos.size());

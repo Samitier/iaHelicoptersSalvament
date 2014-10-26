@@ -87,9 +87,26 @@ public class Solucion implements Cloneable{
             }
             usado = false;
             }
-        }
-              
+        }        
+    }
     
+    void generarSolucion2(Grupos grupos) {
+        for(Grupo gr:grupos) {
+            double min =9999999, aux =0;
+            Helicoptero hel = null;
+            for(Helicoptero heli:helicopteros) {
+                aux = dist(heli.posx, heli.posy, gr.getCoordX(), gr.getCoordY());
+                if(aux<min) {
+                    min = aux;
+                    hel = heli;
+                }
+                else if(aux == min) {
+                    if(hel == null) hel = heli;
+                    else if(hel.viajes.size()<heli.viajes.size()) hel = heli;
+                }
+            }
+            hel.introducirGrupo(gr);
+        }
     }
 
     double getTiempoTotalSalvamento() {
@@ -146,6 +163,9 @@ public class Solucion implements Cloneable{
         return listaux;        
     }
     
+    private double dist(int x0 ,int y0,int x1,int y1) {
+        return Math.sqrt(Math.pow( (double)x1 - x0 ,2 ) + Math.pow((double)y1 - y0 ,2));
+    }
    
  
     private int dist(Grupo gr, Grupo gr2) {
@@ -197,7 +217,7 @@ public class Solucion implements Cloneable{
     }
 
     double getTiempoSalvamentoP1() {
-        double total =0;
+        double total =0.0;
         for(Helicoptero heli:helicopteros) {
             total += heli.Consultar_tiempo_prior1();
         }
